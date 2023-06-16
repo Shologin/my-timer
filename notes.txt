@@ -1,0 +1,270 @@
+startBtn.addEventListener("click", startCount);
+
+function startCount() {
+  secondsInterval = setInterval(() => {
+    chrome.runtime.sendMessage({ seconds: "require" }, (response) => {
+      seconds = response.seconds;
+      displaySec.innerHTML = seconds;
+    });
+  }, 1000);
+}
+
+
+
+  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.seconds === "require") {
+    count();
+    sendResponse({ seconds: seconds });
+  }
+});
+
+function count() {
+  seconds++;
+}
+==================================================================================================================================
+==================================================================================================================================
+==================================================================================================================================
+
+resetBtn.addEventListener("click", reset);
+
+// resetStopwatchBtn.addEventListener("click", resetStopwatch);
+
+startBtn.addEventListener("click", () => {
+  if (isTimerWorking === false && hours === 0 && minutes === 0 && seconds === 0) {
+    alert("Please set time");
+  } else if (isTimerWorking === false) {
+    start();
+    startBtn.className = "stopBtn";
+    startBtn.innerHTML = "Stop";
+    resetBtn.style.display = "inline-block";
+    isTimerWorking = true;
+  } else if (isTimerWorking === true) {
+    stop();
+    startBtn.className = "timer-btn";
+    startBtn.innerHTML = "Resume";
+    isTimerWorking = false;
+  } else alert("startBtn ERROR");
+  console.log(isTimerWorking);
+});
+
+
+
+//  F U N C T I O N S -----------
+
+function countdownHeart() {
+  if (seconds > 0) {
+    seconds--;
+  } else if (minutes > 0) {
+    minutes--;
+    seconds += 59;
+  } else if (hours > 0) {
+    hours--;
+    minutes += 59;
+    seconds += 59;
+  } else {
+    alert("countdownHeart ERROR");
+  }
+  console.log(`${hours} ${minutes} ${seconds}`);
+}
+
+function start() {
+  if (hours > 0 || minutes > 0 || seconds > 0) {
+    secondsIntervalId = setInterval(() => {
+      if (hours === 0 && minutes === 0 && seconds === 0) {
+        soundOnTimerEnd();
+        // alert("Time ran out");
+        clearInterval(secondsIntervalId);
+        timeRanOut();
+        // showTableButtons();
+        // reset();
+      } else {
+        countdownHeart();
+        hideTableButtons();
+      }
+      seconds < 10 ? (displaySec.innerHTML = "0" + seconds) : (displaySec.innerHTML = seconds);
+      minutes < 10 ? (displayMin.innerHTML = "0" + minutes) : (displayMin.innerHTML = minutes);
+      hours < 10 ? (displayHrs.innerHTML = "0" + hours) : (displayHrs.innerHTML = hours);
+    }, 1000);
+  }
+  // else if (hours === 0 && minutes === 0 && seconds === 0) {
+  //   alert("Please set time");
+  // }
+  else alert("start5 ERROR");
+}
+
+function timeRanOut() {
+  let timeOutBtn = document.createElement("button");
+  timeOutBtn.className = "stopBtn";
+  timeOutBtn.innerHTML = "OKAY!!!";
+  resetBtn.style.display = "none";
+  startBtn.style.display = "none";
+  document.getElementById("timer-timer-buttons").appendChild(timeOutBtn);
+  timeOutBtn.addEventListener("click", () => {
+    timeOutBtn.style.display = "none";
+    startBtn.style.display = "inline-block";
+    clearInterval(soundIntervalId);
+    showTableButtons();
+    reset();
+  });
+}
+
+function stop() {
+  clearInterval(secondsIntervalId);
+  showTableButtons();
+}
+
+function reset() {
+  stop();
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
+  seconds < 10 ? (displaySec.innerHTML = "0" + seconds) : (displaySec.innerHTML = seconds);
+  minutes < 10 ? (displayMin.innerHTML = "0" + minutes) : (displayMin.innerHTML = minutes);
+  hours < 10 ? (displayHrs.innerHTML = "0" + hours) : (displayHrs.innerHTML = hours);
+  resetBtn.style.display = "none";
+  startBtn.className = "timer-btn";
+  startBtn.innerHTML = "Start";
+  isTimerWorking = false;
+}
+
+
+function soundPlay() {
+  let audio = new Audio();
+  audio.src = "timer-sound.mp3";
+  audio.autoplay = true;
+}
+
+function soundOnTimerEnd() {
+  soundPlay();
+  soundIntervalId = setInterval(soundPlay, 2000);
+}
+
+ "matches": ["https://*.google.com.ua/*"],
+
+
+//back
+else if (request.command === "checkForContentScript") {
+    if (isWorking === false && isPaused === false && isStatusTimeOut === false) {
+      sendResponse({ forContent: "status 0" });
+    } else if (isWorking === true && isPaused === false && isStatusTimeOut === false) {
+      sendResponse({ forContent: "working" });
+    } else if (isWorking === false && isPaused === true) {
+      sendResponse({ forContent: "paused" });
+    } else if (isStatusTimeOut === true) {
+      sendResponse({ forContent: "timeIsOut" });
+    }
+  }
+
+
+// content
+let contentIntervalID;
+
+contentIntervalID = setInterval(() => {
+  chrome.runtime.sendMessage({ command: "checkForContentScript" }, (response) => {
+    if (response.forContent === "timeIsOut") {
+      console.log("Time ran out");
+      clearInterval(contentIntervalID);
+    } else if (response.forContent === "status 0") {
+      console.log("Status 0");
+    } else if (response.forContent === "working") {
+      console.log("Working...");
+    } else if (response.forContent === "paused") {
+      console.log("Paused");
+    }
+  });
+}, 1000);
+
+
+
+
+// content
+const port = chrome.runtime.connect({ name: "knockknock" });
+console.log(port.name + " - Connected");
+
+port.onMessage.addListener(function (message) {
+  if (message.answer === "Hello you") {
+    console.log(message.answer);
+  } else if (message.status === "congratulations") {
+    console.log(message.status);
+  }
+});
+
+// back
+chrome.runtime.onConnect.addListener(function (port) {
+  console.log(port.name + " - Connected");
+  port.onMessage.addListener(function (message) {
+    if (message.greeting === "Hello") {
+      console.log(message.greeting);
+      port.postMessage({ answer: "Hello you" });
+    }
+  });
+});
+
+function send() {
+  port.postMessage({ greeting: "Hello" });
+}
+
+
+===============================================================================
+
+let contentIntervalID;
+
+// content
+const port = chrome.runtime.connect({ name: "knockknock" });
+console.log(port.name + " - Connected");
+
+contentIntervalID = setInterval(() => {
+  port.postMessage({ command: "checkForContentScript" });
+  port.onMessage.addListener(function (message) {
+    if (message.forContent === "timeIsOut") {
+      console.log("Time ran out");
+      clearInterval(contentIntervalID);
+    } else if (message.forContent === "status 0") {
+      console.log("Status 0");
+    } else if (message.forContent === "working") {
+      console.log("Working...");
+    } else if (message.forContent === "paused") {
+      console.log("Paused");
+    }
+  });
+  console.log("message");
+}, 1000);
+
+// back
+chrome.runtime.onConnect.addListener(function (port) {
+  console.log(port.name + " - Connected");
+  port.onMessage.addListener(function (message) {
+    if (message.command === "checkForContentScript") {
+      if (isWorking === false && isPaused === false && isStatusTimeOut === false) {
+        port.postMessage({ forContent: "status 0" });
+      } else if (isWorking === true && isPaused === false && isStatusTimeOut === false) {
+        port.postMessage({ forContent: "working" });
+      } else if (isWorking === false && isPaused === true) {
+        port.postMessage({ forContent: "paused" });
+      } else if (isStatusTimeOut === true) {
+        port.postMessage({ forContent: "timeIsOut" });
+      }
+    }
+  });
+});
+
+
+=============================================================================
+
+S T Y L E S
+
+// .theme-light {
+//   color: rgb(10, 9, 9);
+//   background: rgb(34, 193, 195);
+//   background: linear-gradient(29deg, rgba(34, 193, 195, 1) 0%, rgba(227, 197, 134, 1) 100%);
+// }
+
+// .theme-classic {
+//   background: white;
+// }
+
+// #change-theme {
+//   position: absolute;
+//   top: 35%;
+//   right: 1%;
+// }

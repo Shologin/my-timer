@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 400px;
+  height: 200px;
+}
+
+.timer {
+  margin-bottom: 200px;
+  width: 400px; /* 600px */
+  height: 200px; /* 250px */
+  position: absolute;
+}
+
+.timer-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.table {
+  display: flex;
+}
+
+.table-hours,
+.table-minutes,
+.table-seconds,
+.table-column {
+  font-family: monospace;
+  /* font-size: 60px; */
+  font-size: 5em;
+}
+
+.miliseconds-separator {
+  font-size: 4em;
+}
+
+.table-column {
+  align-self: center;
+}
+
+.table-hours,
+.table-minutes,
+.table-seconds {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table-btn {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  opacity: 0.3;
+  transition: 0.1s all ease;
+}
+.table-btn:hover {
+  background-color: rgb(56, 71, 209);
+  opacity: 1;
+  color: white;
+  transform: scale(1.2);
+}
+
+.timer-buttons {
+  margin-top: 5%;
+}
+
+.timer-btn {
+  width: 60px;
+  height: 25px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgb(41, 31, 136);
+  box-shadow: 0px 0px 20px rgb(41, 31, 136);
+  font-family: monospace;
+  color: white;
+  cursor: pointer;
+  transition: 0.1s all ease;
+}
+.timer-btn:hover {
+  background-color: rgb(20, 14, 70);
+  transform: scale(1.1);
+}
+
+#start-btn {
+  margin-right: 0;
+}
+
+.stopBtn {
+  width: 60px;
+  height: 25px;
+  margin-right: 0;
+  border: none;
+  border-radius: 25px;
+  background-color: rgb(184, 9, 9);
+  box-shadow: 0px 0px 20px rgb(184, 9, 9);
+  font-family: monospace;
+  color: white;
+  cursor: pointer;
+  transition: 0.1s all ease;
+}
+.stopBtn:hover {
+  background-color: rgb(102, 11, 11);
+  transform: scale(1.1);
+}
+
+#reset-btn {
+  display: none;
+}
+
+.theme-dark {
+  color: white;
+  background: rgb(15, 15, 15);
+  background: linear-gradient(151deg, rgb(15, 15, 15) 0%, rgb(24, 36, 69) 99%, rgb(31, 51, 108) 99%, rgb(22, 35, 164) 100%);
+}
+
+.timeout-banner {
+  display: none;
+  text-align: center;
+  width: 200px;
+  font-family: monospace;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: rgb(184, 9, 9);
+  box-shadow: 0px 0px 20px rgb(184, 9, 9);
+}/*# sourceMappingURL=style.css.map */

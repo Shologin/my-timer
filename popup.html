@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyTimer 2.0</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="timer-container theme-dark">
+      <!-- <button id="test">Test</button> -->
+      <div class="timeout-banner">Time is out!</div>
+      <div class="table">
+        <div class="table-hours">
+          <button class="table-btn" id="plus-hrs">+</button>
+          <span id="display-hrs">00</span>
+          <button class="table-btn" id="minus-hrs">-</button>
+        </div>
+        <span class="table-column">:</span>
+        <div class="table-minutes">
+          <button class="table-btn" id="plus-min">+</button>
+          <span id="display-min">00</span>
+          <button class="table-btn" id="minus-min">-</button>
+        </div>
+        <span class="table-column">:</span>
+        <div class="table-seconds">
+          <button class="table-btn" id="plus-sec">+</button>
+          <span id="display-sec">00</span>
+          <button class="table-btn" id="minus-sec">-</button>
+        </div>
+      </div>
+      <div class="timer-buttons" id="timer-timer-buttons">
+        <button class="timer-btn" id="reset-btn">Reset</button>
+        <button class="timer-btn" id="start-btn">Start</button>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
