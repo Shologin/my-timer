@@ -1,9 +1,9 @@
-# MyTimer - browser extension
+# ⌛ MyTimer - browser extension
 
 Google Chrome extension that provides you a convenient tool to manage your time while working.
 
 
-## Run Locally
+## 🚀 Run Locally
 
 1. Clone the project.
 
@@ -13,7 +13,7 @@ Google Chrome extension that provides you a convenient tool to manage your time 
 
 ####
 
-2. Open extensions in Google Chrome.
+2. Open extensions page in Google Chrome.
 
 ```bash
   chrome://extensions/
@@ -43,5 +43,29 @@ Google Chrome extension that provides you a convenient tool to manage your time 
 
 <img src="https://github.com/shologin/my-timer/assets/136815194/acdacf82-7ae4-4a25-8306-63acaa909131" />
 
+
+####
+
+7. Enjoy.
+
+## 🚶‍♂️ Contributing
+
+Contributions are always welcome! Feel free to open an issue or make a pull request. There are several ways to make the project better.
+
+### 🧪 Product testing
+
+You can note bugs and other problems while using the extension. Just open an issue and describe:
+1. The appeared problem.
+2. Ways to reproduce the situation in which it happened. 
+
+### ⚙️ Functional improvements
+
+If you have any clues how to make it working better, or maybe you've resolved an issue, go right ahead and open a pull request.
+* If it resolves an issue, please refer to this issue in the title of pull request.
+* If it other improvement, please provide the understandable desription.
+
+### 📝 README editing
+
+You can always change this README file. Feel free to suggest any ideas. Just fork the project, edit it in your branch and make a pull request!
 
 
