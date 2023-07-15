@@ -40,7 +40,7 @@ Google Chrome extension that provides you a convenient tool to manage your time 
 ###
 
 
-4. Click on "Load unpacked" button.
+4. Click on "Load unpacked"-button and load the extension to a browser.
 
 <img src="https://github.com/shologin/my-timer/assets/136815194/64ea9f7a-5cf5-487d-8d6e-1465fbcc1af2" />
 
